@@ -5,13 +5,16 @@ import logo from '../../assets/images/b93b8c666e13f49971483596ef14800f.png'
 
 
 
-const CardComponent = () => {
+const CardComponent = (props) => {
+    const {countInStock,description,image,name,price,rating,type, discount, selled} =  props  
     return (
         <WrapperCardStyle
             hoverable
-            headStyle={{ width:`200px`, height:`200px`}}
             style={{ width: 200 }}
-            bodyStyle={{ padding: '10px' }}
+            styles={{
+                header: { width: '200px', height: '200px' }, 
+                body: { padding: '10px' },                   
+            }}
             cover={
                 <img
                     draggable={false}
@@ -20,18 +23,18 @@ const CardComponent = () => {
                 />
             }
         >
-            <img src={logo} style={{width:'68px', height:'14px', position:'absolute',top:0,left:0, borderTopLeftRadius:'3px'}}/>
-            <StyleNameProduct>Iphone</StyleNameProduct>
+            <img src={logo} style={{ width: '68px', height: '14px', position: 'absolute', top: 0, left: 0, borderTopLeftRadius: '3px' }} />
+            <StyleNameProduct>{name}</StyleNameProduct>
             <WrapperReporText>
-                <span style={{marginRight: '4px'}}>
-                    <span>4.96</span><StarFilled style={{ frontSize: '10px', color: 'yellow' }} />
+                <span style={{ marginRight: '4px' }}>
+                    <span>{rating}</span><StarFilled style={{ frontSize: '10px', color: 'yellow' }} />
                 </span>
-                <WrapperStyleTextSell> | Da ban duoc 200k</WrapperStyleTextSell>
+                <WrapperStyleTextSell> | Da ban duoc {selled || 1000 }+</WrapperStyleTextSell>
             </WrapperReporText>
             <WrapperPriceText>
-            <span style={{marginRight:'8px'}}>1.000.000 VND</span>
+                <span style={{ marginRight: '8px' }}>{price}</span>
                 <WrapperDiscountText>
-                    -5%
+                    {discount || 5 }%
                 </WrapperDiscountText>
 
             </WrapperPriceText>
